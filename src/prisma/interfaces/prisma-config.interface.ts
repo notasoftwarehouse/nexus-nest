@@ -1,3 +1,3 @@
-export interface PrismaConfig {
+export interface IPrismaConfig {
   databaseUrl: string;
 }

@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { SupabaseService } from 'src/supabase/supabase.service';
+import { IStorageClient } from './interfaces/storage-client.interface';
 
 @Injectable()
 export class StorageService {
-  private readonly supabaseClient = this.supabaseService.getClient();
+  private readonly storageClient: IStorageClient;
 
-  constructor(private readonly supabaseService: SupabaseService) {}
+  constructor(storageClient: IStorageClient) {
+    this.storageClient = storageClient;
+    console.log(this.storageClient);
+  }
 }

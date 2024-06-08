@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { DemoModule } from './demo/demo.module';
+import { StorageModule } from './storage/storage.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { DemoModule } from './demo/demo.module';
       inject: [ConfigService],
     }),
     DemoModule,
+    StorageModule,
   ],
   controllers: [],
   providers: [],

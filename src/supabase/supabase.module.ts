@@ -1,10 +1,10 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { SupabaseService } from './supabase.service';
-import { SupabaseConfig } from './interfaces/supabase-config.interface';
+import { ISupabaseConfig } from './interfaces/supabase-config.interface';
 
 @Module({})
 export class SupabaseModule {
-  static forRoot(config: SupabaseConfig): DynamicModule {
+  static forRoot(config: ISupabaseConfig): DynamicModule {
     return {
       module: SupabaseModule,
       providers: [
@@ -19,7 +19,7 @@ export class SupabaseModule {
   }
 
   static forRootAsync(options: {
-    useFactory: (...args: any[]) => Promise<SupabaseConfig> | SupabaseConfig;
+    useFactory: (...args: any[]) => Promise<ISupabaseConfig> | ISupabaseConfig;
     inject?: any[];
   }): DynamicModule {
     return {

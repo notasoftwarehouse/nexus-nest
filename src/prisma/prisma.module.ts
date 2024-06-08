@@ -1,11 +1,11 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import { PrismaConfig } from './interfaces/prisma-config.interface';
+import { IPrismaConfig } from './interfaces/prisma-config.interface';
 
 @Global()
 @Module({})
 export class PrismaModule {
-  static forRoot(config: PrismaConfig): DynamicModule {
+  static forRoot(config: IPrismaConfig): DynamicModule {
     return {
       module: PrismaModule,
       providers: [
@@ -20,7 +20,7 @@ export class PrismaModule {
   }
 
   static forRootAsync(options: {
-    useFactory: (...args: any[]) => Promise<PrismaConfig> | PrismaConfig;
+    useFactory: (...args: any[]) => Promise<IPrismaConfig> | IPrismaConfig;
     inject?: any[];
   }): DynamicModule {
     return {
