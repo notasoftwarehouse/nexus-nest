@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
-import { MutexModule } from './mutex/mutex.module';
-import { SharpModule } from './sharp/sharp.module';
 import { DemoModule } from './demo/demo.module';
 import { SupabaseModule } from './supabase/supabase.module';
 
@@ -15,8 +13,6 @@ import { SupabaseModule } from './supabase/supabase.module';
       }),
       inject: [ConfigService],
     }),
-    MutexModule,
-    SharpModule,
     DemoModule,
     SupabaseModule.forRootAsync({
       useFactory: async (configService: ConfigService) => ({
