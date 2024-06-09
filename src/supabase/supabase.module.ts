@@ -13,9 +13,13 @@ export class SupabaseModule {
           provide: 'SUPABASE_CONFIG',
           useValue: config,
         },
+        {
+          provide: 'STORAGE_CLIENT',
+          useClass: SupabaseService,
+        },
         SupabaseService,
       ],
-      exports: [SupabaseService],
+      exports: [SupabaseService, 'STORAGE_CLIENT'],
     };
   }
 
@@ -31,9 +35,13 @@ export class SupabaseModule {
           useFactory: options.useFactory,
           inject: options.inject || [],
         },
+        {
+          provide: 'STORAGE_CLIENT',
+          useClass: SupabaseService,
+        },
         SupabaseService,
       ],
-      exports: [SupabaseService],
+      exports: [SupabaseService, 'STORAGE_CLIENT'],
     };
   }
 }

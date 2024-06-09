@@ -7,5 +7,6 @@ export class StorageService {
 
   constructor(@Inject('STORAGE_CLIENT') storageClient: IStorageClient) {
     this.storageClient = storageClient;
+    console.log(storageClient);
   }
 }
