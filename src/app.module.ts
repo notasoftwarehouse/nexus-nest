@@ -1,16 +1,20 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
-import { MutexModule } from './mutex/mutex.module';
-import { SharpModule } from './sharp/sharp.module';
 import { DemoModule } from './demo/demo.module';
+import { StorageModule } from './storage/storage.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    PrismaModule,
-    MutexModule,
-    SharpModule,
+    PrismaModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => ({
+        databaseUrl: configService.get<string>('DATABASE_URL'),
+      }),
+      inject: [ConfigService],
+    }),
+
+    StorageModule,
     DemoModule,
   ],
   controllers: [],
