@@ -1,7 +1,8 @@
-import { DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 import { SupabaseService } from './supabase.service';
 import { ISupabaseConfig } from './interfaces/supabase-config.interface';
 
+@Global()
 @Module({})
 export class SupabaseModule {
   static forRoot(config: ISupabaseConfig): DynamicModule {
